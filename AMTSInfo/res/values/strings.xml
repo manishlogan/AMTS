@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AMTS Info</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="search_by_number">Search By Bus Number</string>
+    <string name="feedback">Feedback</string>
+    <string name="title_activity_search_by_number">Search By Bus Number</string>
+    <string name="enter_bus_no">Enter Bus Number</string>
+    <string name="search">Search</string>
+    <string name="title_activity_feedback">FeedbackActivity</string>
+    <string name="search_by_location">Search By Location</string>
+    <string name="search_by_src_dest">Search By Source and Destination</string>
+    <string name="title_activity_search_by_location">Search By Location</string>
+    <string name="enter_stop_name">Enter Stop</string>
+    <string name="title_activity_search_by_source_and_destination">Search By Source And Destination</string>
+	<string name="enter_src_name">Enter Source</string>
+	<string name="enter_dest_name">Enter Destination</string>
+</resources>
