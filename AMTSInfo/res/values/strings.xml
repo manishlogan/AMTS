@@ -17,4 +17,6 @@
     <string name="title_activity_search_by_source_and_destination">Search By Source And Destination</string>
 	<string name="enter_src_name">Enter Source</string>
 	<string name="enter_dest_name">Enter Destination</string>
+	<string name="indirect_routes">View indirect routes</string>
+	
 </resources>

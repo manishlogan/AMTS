@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/srcBusNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="srcBusNo"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/srcBusDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="srcBusDesc" />
+
+    <TextView
+        android:id="@+id/destBusNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="destBusNo"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/destBusDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="destBusDesc" />
+
+</LinearLayout>

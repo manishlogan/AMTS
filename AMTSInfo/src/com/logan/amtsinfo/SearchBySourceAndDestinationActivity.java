@@ -13,10 +13,12 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.logan.amtsinfo.adapter.BusDetailsAdapter;
+import com.logan.amtsinfo.adapter.IndirectRouteAdapter;
 
 public class SearchBySourceAndDestinationActivity extends Activity {
 
@@ -68,6 +70,11 @@ public class SearchBySourceAndDestinationActivity extends Activity {
     				busDetails.add(detail);
     			}
     		}
+    		if(busDetails.isEmpty()){
+    			Button indirectRoutesButton = ((Button)findViewById(R.id.indirectRoutesButton));
+    			indirectRoutesButton.setVisibility(0);
+    			Toast.makeText(this, "No direct bus found...", Toast.LENGTH_SHORT).show();
+    		}
     		
     		BusDetailsAdapter adapter = new BusDetailsAdapter(this, busDetails);
     		ListView listView = (ListView)findViewById(R.id.listView1);
@@ -75,11 +82,50 @@ public class SearchBySourceAndDestinationActivity extends Activity {
     	}
     }
 
+	public void findIndirectRoutes(View view) {
+		String src = ((AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1)).getText().toString();
+    	String dest = ((AutoCompleteTextView)findViewById(R.id.autoCompleteTextView2)).getText().toString();
+    	
+		HashMap<String, ArrayList<String>> srcBuses = new HashMap<String, ArrayList<String>>();
+		HashMap<String, ArrayList<String>> destBuses = new HashMap<String, ArrayList<String>>();
+		ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String,String>>();
+		
+		for(String bus : ApplicationUtility.data.keySet()){
+			ArrayList<String> stops = ApplicationUtility.data.get(bus);
+			if(stops.contains(src)){
+				srcBuses.put(bus, stops);
+			}else if(stops.contains(dest)){
+				destBuses.put(bus, stops);
+			}
+		}
+		
+		
+		for(String bus : destBuses.keySet()){
+			for(String srcBus : srcBuses.keySet()){
+				ArrayList<String> desStops = new ArrayList<String>(destBuses.get(bus));
+				ArrayList<String> srcStops = new ArrayList<String>(srcBuses.get(srcBus));
+				desStops.retainAll(srcStops);
+				if(!desStops.isEmpty()){
+					HashMap<String, String> buses = new HashMap<String, String>();
+					buses.put("srcBusNo",srcBus);
+					buses.put("srcBusDesc",src + "-"+desStops.get(0));
+					
+					buses.put("destBusNo",bus);
+					buses.put("destBusDesc",desStops.get(0) + "-" + dest);
+					result.add(buses);
+				}
+			}
+		}
+		
+		IndirectRouteAdapter adapter = new IndirectRouteAdapter(this, result);
+		ListView listView = (ListView)findViewById(R.id.listView1);
+		listView.setAdapter(adapter);
+	}
+
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.search_by_source_and_destination, menu);
         return true;
     }
-    
 }
