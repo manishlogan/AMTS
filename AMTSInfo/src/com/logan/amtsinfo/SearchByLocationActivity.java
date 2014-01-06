@@ -2,9 +2,12 @@ package com.logan.amtsinfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.logan.amtsinfo.adapter.BusDetailsAdapter;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -45,18 +48,23 @@ public class SearchByLocationActivity extends Activity {
 					long arg3) {
 				String stop = (String)adapterView.getItemAtPosition(position);
 				List<String> busNos = new ArrayList<String>();
-				
+	    		ArrayList<HashMap<String,String>> busDetails = new ArrayList<HashMap<String,String>>();
+
 				for(String busNo : ApplicationUtility.data.keySet()){
-					if(ApplicationUtility.data.get(busNo).contains(stop)){
-						busNos.add(busNo);
+	    			List<String> stops = ApplicationUtility.data.get(busNo); 
+					if(stops.contains(stop)){
+						HashMap<String,String> detail = new HashMap<String, String>();
+	    				detail.put("busNo",busNo);
+	    				detail.put("description", stops.get(0)+"-"+stops.get(stops.size() - 1));
+	    				busDetails.add(detail);
 					}
 				}
 				
 				Collections.sort(busNos);
 				
-				ArrayAdapter<String> adapter = new ArrayAdapter<String>(currentView, android.R.layout.simple_list_item_1,busNos);
-				ListView listView = (ListView)findViewById(R.id.listView1);
-				listView.setAdapter(adapter);
+				BusDetailsAdapter adapter = new BusDetailsAdapter(currentView, busDetails);
+	    		ListView listView = (ListView)findViewById(R.id.listView1);
+	    		listView.setAdapter(adapter);
 			}
 		});
 		

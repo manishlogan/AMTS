@@ -64,7 +64,7 @@ public class SearchBySourceAndDestinationActivity extends Activity {
     			if(stops.contains(src) && stops.contains(dest)){
     				HashMap<String,String> detail = new HashMap<String, String>();
     				detail.put("busNo",bus);
-    				detail.put("description", stops.get(0)+"-"+stops.get(stops.size() - 1)+"-"+stops.get(0));
+    				detail.put("description", stops.get(0)+"-"+stops.get(stops.size() - 1));
     				busDetails.add(detail);
     			}
     		}
