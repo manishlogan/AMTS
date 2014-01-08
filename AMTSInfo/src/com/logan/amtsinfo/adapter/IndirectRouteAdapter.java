@@ -50,14 +50,18 @@ public class IndirectRouteAdapter extends BaseAdapter{
         TextView srcDesc= (TextView)view.findViewById(R.id.srcBusDesc);
         TextView destBusNo = (TextView)view.findViewById(R.id.destBusNo);
         TextView destDesc = (TextView)view.findViewById(R.id.destBusDesc);
-
+        
         HashMap<String, String> detail = new HashMap<String, String>();
         detail = data.get(position);
         srcBusNo.setText(detail.get("srcBusNo"));
         srcDesc.setText(detail.get("srcBusDesc"));
         destBusNo.setText(detail.get("destBusNo"));
         destDesc.setText(detail.get("destBusDesc"));
-        System.out.println(detail.get("srcBusNo")+","+detail.get("srcDesc")+","+detail.get("destBusNo")+","+detail.get("destDesc"));
+        srcBusNo.setTextSize(22);
+        srcDesc.setTextSize(20);
+        destBusNo.setTextSize(22);
+        destDesc.setTextSize(20);
+        
         return view;
 	}
 	

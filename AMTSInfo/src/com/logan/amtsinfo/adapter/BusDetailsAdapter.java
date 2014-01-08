@@ -47,12 +47,14 @@ public class BusDetailsAdapter extends BaseAdapter{
             view = inflater.inflate(R.layout.bus_details, null);
  
         TextView busNo = (TextView)view.findViewById(R.id.busNo);
+        busNo.setTextSize(22);
         TextView description = (TextView)view.findViewById(R.id.description);
  
         HashMap<String, String> detail = new HashMap<String, String>();
         detail = data.get(position);
         busNo.setText(detail.get("busNo"));
         description.setText(detail.get("description"));
+        description.setTextSize(20);
         return view;
 	}
 	

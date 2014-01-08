@@ -2,13 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.logan.amtsinfo"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 	
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
 	
     <uses-sdk
         android:minSdkVersion="11"
@@ -21,7 +19,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.logan.amtsinfo.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +28,7 @@
         </activity>
         <activity
             android:name="com.logan.amtsinfo.SearchByNumber"
-            android:label="@string/title_activity_search_by_number" >
+            android:label="@string/title_activity_search_by_number" android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.logan.amtsinfo.FeedbackActivity"
@@ -38,11 +36,11 @@
         </activity>
         <activity
             android:name="com.logan.amtsinfo.SearchByLocationActivity"
-            android:label="@string/title_activity_search_by_location" >
+            android:label="@string/title_activity_search_by_location" android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.logan.amtsinfo.SearchBySourceAndDestinationActivity"
-            android:label="@string/title_activity_search_by_source_and_destination" >
+            android:label="@string/title_activity_search_by_source_and_destination" android:screenOrientation="portrait">
         </activity>
     </application>
 

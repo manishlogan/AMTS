@@ -117,6 +117,10 @@ public class SearchBySourceAndDestinationActivity extends Activity {
 			}
 		}
 		
+		if(result.isEmpty()){
+			Toast.makeText(this, "No indirect bus found...", Toast.LENGTH_SHORT).show();
+		}
+		
 		IndirectRouteAdapter adapter = new IndirectRouteAdapter(this, result);
 		ListView listView = (ListView)findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
