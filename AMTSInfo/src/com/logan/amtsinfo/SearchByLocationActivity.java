@@ -7,17 +7,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.logan.amtsinfo.adapter.BusDetailsAdapter;
-
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.SimpleCursorAdapter;
+
+import com.logan.amtsinfo.adapter.BusDetailsAdapter;
+import com.logan.amtsinfo.filter.SuggestionFilterQueryProvider;
 
 public class SearchByLocationActivity extends Activity {
 
@@ -34,11 +36,22 @@ public class SearchByLocationActivity extends Activity {
         }
         
         List<String> stopsList = new ArrayList<String>(stops);
+        String[] from = {"stopName"};
+        int[] to = {android.R.id.text1};
         
         Collections.sort(stopsList);
         
-        ArrayAdapter<String> stopsSuggestion = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, stopsList);
-		 
+        SimpleCursorAdapter stopsSuggestion = new SimpleCursorAdapter(this, android.R.layout.simple_dropdown_item_1line, null, from, to);
+		SuggestionFilterQueryProvider filter = new SuggestionFilterQueryProvider(stopsList);
+		stopsSuggestion.setFilterQueryProvider(filter); 
+		
+		stopsSuggestion.setCursorToStringConverter(new SimpleCursorAdapter.CursorToStringConverter() {
+			@Override
+			public CharSequence convertToString(Cursor cursor) {
+				return cursor.getString(1);
+			}
+		});
+		
 		AutoCompleteTextView textView = (AutoCompleteTextView)
 	                 findViewById(R.id.autoCompleteTextView1);
 		
@@ -46,7 +59,8 @@ public class SearchByLocationActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int position,
 					long arg3) {
-				String stop = (String)adapterView.getItemAtPosition(position);
+				MatrixCursor cursor = (MatrixCursor)adapterView.getItemAtPosition(position);
+				String stop = cursor.getString(1);
 				List<String> busNos = new ArrayList<String>();
 	    		ArrayList<HashMap<String,String>> busDetails = new ArrayList<HashMap<String,String>>();
 
@@ -70,14 +84,6 @@ public class SearchByLocationActivity extends Activity {
 		
 	         textView.setAdapter(stopsSuggestion);
 	         textView.setThreshold(1);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.search_by_location, menu);
-        return true;
     }
     
 }

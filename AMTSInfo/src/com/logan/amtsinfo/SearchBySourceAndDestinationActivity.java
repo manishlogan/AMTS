@@ -8,17 +8,18 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.logan.amtsinfo.adapter.BusDetailsAdapter;
 import com.logan.amtsinfo.adapter.IndirectRouteAdapter;
+import com.logan.amtsinfo.filter.SuggestionFilterQueryProvider;
 
 public class SearchBySourceAndDestinationActivity extends Activity {
 
@@ -33,12 +34,27 @@ public class SearchBySourceAndDestinationActivity extends Activity {
         }
         
         List<String> stopsList = new ArrayList<String>(stops);
+        String[] from = {"stopName"};
+        int[] to = {android.R.id.text1};
         
         Collections.sort(stopsList);
         
-        ArrayAdapter<String> srcSuggestion = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, stopsList);
-        ArrayAdapter<String> destSuggestion = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, stopsList);
-        
+        SimpleCursorAdapter srcSuggestion = new SimpleCursorAdapter(this, android.R.layout.simple_dropdown_item_1line, null, from, to);
+        SimpleCursorAdapter destSuggestion = new SimpleCursorAdapter(this, android.R.layout.simple_dropdown_item_1line, null, from, to);
+        SuggestionFilterQueryProvider filter = new SuggestionFilterQueryProvider(stopsList);
+		srcSuggestion.setFilterQueryProvider(filter); 
+		destSuggestion.setFilterQueryProvider(filter);
+		
+		SimpleCursorAdapter.CursorToStringConverter converter = new SimpleCursorAdapter.CursorToStringConverter() {
+			@Override
+			public CharSequence convertToString(Cursor cursor) {
+				return cursor.getString(1);
+			}
+		};
+		
+		srcSuggestion.setCursorToStringConverter(converter);
+		destSuggestion.setCursorToStringConverter(converter);
+		
 		AutoCompleteTextView srcTextView = (AutoCompleteTextView)
 	                 findViewById(R.id.autoCompleteTextView1);
 		
@@ -125,11 +141,4 @@ public class SearchBySourceAndDestinationActivity extends Activity {
 		ListView listView = (ListView)findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
 	}
-
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.search_by_source_and_destination, menu);
-        return true;
-    }
 }

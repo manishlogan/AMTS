@@ -6,7 +6,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -45,13 +44,6 @@ public class SearchByNumber extends Activity {
 		
 	         textView.setAdapter(buses);
 	         textView.setThreshold(1);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.search_by_number, menu);
-		return true;
 	}
 	
 	public void searchByBusNumber(View view){
