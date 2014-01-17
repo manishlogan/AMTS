@@ -12,11 +12,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 
-import com.startapp.android.publish.Ad;
-import com.startapp.android.publish.AdEventListener;
 import com.startapp.android.publish.StartAppAd;
 
 public class MainActivity extends Activity {
@@ -48,13 +45,6 @@ public class MainActivity extends Activity {
 		t.start();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	
 	public void searchByBusNumber(View view){
 		Intent nextActivity = new Intent(this, SearchByNumber.class);
 		startActivity(nextActivity);
