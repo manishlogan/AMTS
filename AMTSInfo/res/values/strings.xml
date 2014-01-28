@@ -15,8 +15,12 @@
     <string name="title_activity_search_by_location">Search By Location</string>
     <string name="enter_stop_name">Enter Stop</string>
     <string name="title_activity_search_by_source_and_destination">Search By Source And Destination</string>
-	<string name="enter_src_name">Enter Source</string>
-	<string name="enter_dest_name">Enter Destination</string>
-	<string name="indirect_routes">View indirect routes</string>
-	
+    <string name="enter_src_name">Enter Source</string>
+    <string name="enter_dest_name">Enter Destination</string>
+    <string name="indirect_routes">View indirect routes</string>
+    <string name="title_activity_bus_details">BusDetailsActivity</string>
+    <string name="title_activity_indirect_bus_details">IndirectBusDetailsActivity</string>
+    <string name="from_source">From Source:</string>
+    <string name="from_intersection">From intersection:</string>
+    
 </resources>
