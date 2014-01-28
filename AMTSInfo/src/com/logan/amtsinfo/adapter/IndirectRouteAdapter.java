@@ -32,7 +32,7 @@ public class IndirectRouteAdapter extends BaseAdapter{
 
 	@Override
 	public Object getItem(int position) {
-		return position;
+		return data.get(position);
 	}
 
 	@Override

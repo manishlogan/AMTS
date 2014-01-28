@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
@@ -77,8 +78,19 @@ public class SearchByLocationActivity extends Activity {
 				Collections.sort(busNos);
 				
 				BusDetailsAdapter adapter = new BusDetailsAdapter(currentView, busDetails);
-	    		ListView listView = (ListView)findViewById(R.id.listView1);
+	    		ListView listView = (ListView)findViewById(R.id.srcStops);
 	    		listView.setAdapter(adapter);
+	    		
+	    		listView.setOnItemClickListener(new OnItemClickListener() {
+	    			@Override
+	    			public void onItemClick(AdapterView<?> adapter, View view,
+	    					int position, long arg3) {
+	    				HashMap<String, String> data = (HashMap<String, String>)adapter.getItemAtPosition(position);
+	    				Intent nextActivity = new Intent(currentView, BusDetailsActivity.class);
+	    				nextActivity.putExtra("busNo", data.get("busNo"));
+	    				currentView.startActivity(nextActivity);
+	    			}
+				});
 			}
 		});
 		

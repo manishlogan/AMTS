@@ -8,14 +8,17 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.logan.amtsinfo.adapter.BusDetailsAdapter;
 import com.logan.amtsinfo.adapter.IndirectRouteAdapter;
@@ -23,10 +26,13 @@ import com.logan.amtsinfo.filter.SuggestionFilterQueryProvider;
 
 public class SearchBySourceAndDestinationActivity extends Activity {
 
+	private SearchBySourceAndDestinationActivity currentView;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_by_source_and_destination);
+        currentView = this;
         
         Set<String> stops = new HashSet<String>();
         for(String busNo : ApplicationUtility.data.keySet()){
@@ -90,11 +96,29 @@ public class SearchBySourceAndDestinationActivity extends Activity {
     			Button indirectRoutesButton = ((Button)findViewById(R.id.indirectRoutesButton));
     			indirectRoutesButton.setVisibility(0);
     			Toast.makeText(this, "No direct bus found...", Toast.LENGTH_SHORT).show();
+    		}else{
+    			Button indirectRoutesButton = ((Button)findViewById(R.id.indirectRoutesButton));
+    			indirectRoutesButton.setVisibility(View.INVISIBLE);
     		}
     		
     		BusDetailsAdapter adapter = new BusDetailsAdapter(this, busDetails);
-    		ListView listView = (ListView)findViewById(R.id.listView1);
+    		ListView listView = (ListView)findViewById(R.id.srcStops);
     		listView.setAdapter(adapter);
+    		
+    		listView.setOnItemClickListener(new OnItemClickListener() {
+    			@Override
+    			public void onItemClick(AdapterView<?> adapter, View view,
+    					int position, long arg3) {
+    				HashMap<String, String> data = (HashMap<String, String>)adapter.getItemAtPosition(position);
+    				String busNo = data.get("busNo");
+    				if(busNo != null){
+    					Intent nextActivity = new Intent(currentView, BusDetailsActivity.class);
+        				nextActivity.putExtra("busNo",busNo);
+        				currentView.startActivity(nextActivity);
+    				}
+    				
+    			}
+			});
     	}
     }
 
@@ -138,7 +162,7 @@ public class SearchBySourceAndDestinationActivity extends Activity {
 		}
 		
 		IndirectRouteAdapter adapter = new IndirectRouteAdapter(this, result);
-		ListView listView = (ListView)findViewById(R.id.listView1);
+		ListView listView = (ListView)findViewById(R.id.srcStops);
 		listView.setAdapter(adapter);
 	}
 }
