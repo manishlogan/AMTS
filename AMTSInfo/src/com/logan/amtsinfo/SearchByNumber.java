@@ -37,7 +37,7 @@ public class SearchByNumber extends Activity {
 				List<String> stops = ApplicationUtility.data.get(busNo); 
 				
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(currentView, android.R.layout.simple_list_item_1,stops);
-				ListView listView = (ListView)findViewById(R.id.listView1);
+				ListView listView = (ListView)findViewById(R.id.srcStops);
 				listView.setAdapter(adapter);
 			}
 		});
@@ -53,7 +53,7 @@ public class SearchByNumber extends Activity {
 		List<String> stops = ApplicationUtility.data.get(busNo); 
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,stops);
-		ListView listView = (ListView)findViewById(R.id.listView1);
+		ListView listView = (ListView)findViewById(R.id.srcStops);
 		listView.setAdapter(adapter);
 	}
 }
