@@ -61,4 +61,5 @@
          android:layout_alignParentBottom="true"
          android:layout_marginBottom="12dp" >
      </com.startapp.android.publish.banner.Banner>
+
 </RelativeLayout>
