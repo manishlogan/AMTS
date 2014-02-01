@@ -14,6 +14,7 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 
+import com.evolvingvision.amtsinfo.R;
 import com.startapp.android.publish.StartAppAd;
 
 public class MainActivity extends Activity {

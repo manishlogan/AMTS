@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.evolvingvision.amtsinfo.R;
 
 public class BusDetailsActivity extends Activity {
 

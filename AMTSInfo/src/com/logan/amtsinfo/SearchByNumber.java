@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
+import com.evolvingvision.amtsinfo.R;
 
 public class SearchByNumber extends Activity {
 	

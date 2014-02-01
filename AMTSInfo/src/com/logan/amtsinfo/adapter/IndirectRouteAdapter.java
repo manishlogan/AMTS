@@ -3,7 +3,7 @@ package com.logan.amtsinfo.adapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.logan.amtsinfo.R;
+import com.evolvingvision.amtsinfo.R;
 
 import android.app.Activity;
 import android.content.Context;

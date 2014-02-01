@@ -20,6 +20,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.evolvingvision.amtsinfo.R;
 import com.logan.amtsinfo.adapter.BusDetailsAdapter;
 import com.logan.amtsinfo.adapter.IndirectRouteAdapter;
 import com.logan.amtsinfo.filter.SuggestionFilterQueryProvider;

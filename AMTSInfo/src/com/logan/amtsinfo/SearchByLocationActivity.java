@@ -19,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.evolvingvision.amtsinfo.R;
 import com.logan.amtsinfo.adapter.BusDetailsAdapter;
 import com.logan.amtsinfo.filter.SuggestionFilterQueryProvider;
 
