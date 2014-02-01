@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		StartAppAd.init(this, "111147141", "211077704");
+		StartAppAd.init(this, "111147141", "201107033");
 		setContentView(R.layout.activity_main);
 		activity = this;
 		
