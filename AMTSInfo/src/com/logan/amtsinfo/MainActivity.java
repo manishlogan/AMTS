@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.http.protocol.HTTP;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -21,13 +22,17 @@ public class MainActivity extends Activity {
 
 	private MainActivity activity;
 	
+	private ProgressDialog dialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		StartAppAd.init(this, "111147141", "201107033");
+		StartAppAd.init(this, "111147141", "202703511");
+		dialog = new ProgressDialog(this);
 		setContentView(R.layout.activity_main);
 		activity = this;
 		
+		dialog = ProgressDialog.show(this,"","Please Wait",false); 
 		Thread t = new Thread(){
 			@Override
 			public void run() {
@@ -41,6 +46,7 @@ public class MainActivity extends Activity {
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
+				dialog.dismiss();
 			}
 		};
 		t.start();
